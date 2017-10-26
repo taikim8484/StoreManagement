@@ -110,12 +110,12 @@ const StackTable = StackNavigator(
     StackCheckout: {
       screen: Checkout
     },
-    StackConfirmOrder:{
+    StackConfirmOrder: {
       screen: ConfirmOrder
     }
   },
   {
-    headerMode: 'screen'
+    headerMode: "screen"
   }
 );
 
