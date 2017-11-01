@@ -45,7 +45,7 @@ export class Product extends Component {
     //       SL={this.state.SL[i]}
     //     />
     //   );
-    }
+    //}
   }
   confirm() {
     Alert.alert(
