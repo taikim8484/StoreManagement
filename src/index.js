@@ -8,6 +8,4 @@ export class App extends Component {
   }
 }
 
-//export style= Style
-
 export default App;
