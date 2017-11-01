@@ -1,8 +1,35 @@
 import React, { Component } from "react";
-import { View, Text, Button, ScrollView } from "react-native";
+import { View, Text, Button, FlatList } from "react-native";
 
-import {AppHeader} from "../../Header";
+import { AppHeader } from "../../Header";
 import TableDetail from "./TableDetail";
+
+const info = [
+  {
+    idTable: 1,
+    foods: [
+      { name: "Cafe sữa", amount: 1 },
+      { name: "Sting", amount: 1 },
+      { name: "Redbull", amount: 2 }
+    ],
+    money: 75000
+  },
+  {
+    idTable: 2,
+    foods: [
+      { name: "Cam vat", amount: 4 },
+      { name: "Meo den", amount: 1 },
+      { name: "Cafe den", amount: 2 }
+    ],
+    money: 425000
+  },
+  {
+    idTable: 3,
+    foods: [{ name: "Tra sữa", amount: 90 }, { name: "Khan lanh", amount: 1 }],
+    money: 89000
+  }
+];
+
 export class Table extends Component {
   static navigationOptions = {
     header: null,
@@ -23,49 +50,18 @@ export class Table extends Component {
             flex: 9
           }}
         >
-          <ScrollView>
-            <TableDetail
-              soban="1"
-              mon1="Cafe sữa :1"
-              mon2="Sting :1"
-              mon3="Redbull :1"
-              sotien="75.000 đ"
-              navigation={this.props.navigation}
-            />
-            <TableDetail
-              soban="2"
-              mon1="Cam vắt :1"
-              mon2="Mèo :15"
-              mon3="Cafe đen :1"
-              sotien="425.000d đ"
-              navigation={this.props.navigation}
-            />
-            <TableDetail soban="3" navigation={this.props.navigation} />
-            <TableDetail
-              soban="4"
-              mon1="Đá chanh :4"
-              mon2="Yet: 7"
-              sotien="89.000d đ"
-              navigation={this.props.navigation}
-            />
-            <TableDetail soban="5" navigation={this.props.navigation} />
-            <TableDetail
-              soban="6"
-              mon1="Pepsi :2"
-              mon2="Khăn lạnh :1"
-              mon3="Coca :1"
-              sotien="32.000d đ"
-              navigation={this.props.navigation}
-            />
-            <TableDetail soban="7" navigation={this.props.navigation} />
-            <TableDetail
-              soban="8"
-              mon1="Trà sữa :2"
-              sotien="35.000 đ"
-              navigation={this.props.navigation}
-            />
-            <TableDetail soban="9" navigation={this.props.navigation} />
-          </ScrollView>
+          <FlatList
+            data={info}
+            renderItem={({ item }) => (
+              <TableDetail
+                key={item.idTable}
+                soban={item.idTable}
+                foods={item.foods}
+                sotien={item.money}
+                navigation={this.props.navigation}
+              />
+            )}
+          />
         </View>
       </View>
     );

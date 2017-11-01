@@ -1,12 +1,21 @@
 import React, { Component } from "react";
 import { Text, View, Image, TouchableOpacity } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
 
 import styles from "./style";
 //Local variables
-const homeIcon = require("../../Media/ic_home_white_48dp/android/drawable-hdpi/ic_home_white_48dp.png");
-const saleIcon = require("../../Media/ic_view_module_white_48dp/android/drawable-hdpi/ic_view_module_white_48dp.png");
-const reportIcon = require("../../Media/ic_insert_chart_white_48dp/android/drawable-hdpi/ic_insert_chart_white_48dp.png");
-const settingIcon = require("../../Media/ic_settings_white_48dp/android/drawable-hdpi/ic_settings_white_48dp.png");
+const homeIcon = (
+  <Icon name="md-home" size={20} color="white" style={styles.iconTouch} />
+);
+const saleIcon = (
+  <Icon name="md-basket" size={20} color="white" style={styles.iconTouch} />
+);
+const reportIcon = (
+  <Icon name="md-bookmarks" size={20} color="white" style={styles.iconTouch} />
+);
+const settingIcon = (
+  <Icon name="md-cog" size={20} color="white" style={styles.iconTouch} />
+);
 
 class Drawer extends Component {
   state = {};
@@ -49,7 +58,7 @@ class Drawer extends Component {
             <View
               style={{ flexDirection: "row", marginTop: 30, marginLeft: 30 }}
             >
-              <Image style={styles.iconTouch} source={homeIcon} />
+              {homeIcon}
               <Text style={styles.textTouch}>TRANG CHỦ</Text>
             </View>
           </TouchableOpacity>
@@ -57,7 +66,7 @@ class Drawer extends Component {
             onPress={() => this.props.navigation.navigate("AppSale")}
           >
             <View style={{ flexDirection: "row", marginLeft: 30 }}>
-              <Image style={styles.iconTouch} source={saleIcon} />
+              {saleIcon}
               <Text style={styles.textTouch}>BÁN HÀNG</Text>
             </View>
           </TouchableOpacity>
@@ -65,7 +74,7 @@ class Drawer extends Component {
             onPress={() => this.props.navigation.navigate("AppReport")}
           >
             <View style={{ flexDirection: "row", marginLeft: 30 }}>
-              <Image style={styles.iconTouch} source={reportIcon} />
+              {reportIcon}
               <Text style={styles.textTouch}>BÁO CÁO</Text>
             </View>
           </TouchableOpacity>
@@ -73,7 +82,7 @@ class Drawer extends Component {
             onPress={() => this.props.navigation.navigate("AppSetting")}
           >
             <View style={{ flexDirection: "row", marginLeft: 30 }}>
-              <Image style={styles.iconTouch} source={settingIcon} />
+              {settingIcon}
               <Text style={styles.textTouch}>CÀI ĐẶT</Text>
             </View>
           </TouchableOpacity>

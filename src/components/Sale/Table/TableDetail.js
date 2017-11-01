@@ -4,6 +4,17 @@ import { View, Text, TouchableOpacity, Dimensions } from "react-native";
 var { height, width } = Dimensions.get("window");
 
 export class TableDetail extends Component {
+  renderFoodDetail() {
+    let { foods } = this.props;
+    return foods.map(({ name, amount }) => {
+      return (
+        <Text key={Math.random()}>
+          {name} : {amount}
+        </Text>
+      );
+    });
+  }
+
   render() {
     return (
       <View
@@ -47,9 +58,10 @@ export class TableDetail extends Component {
             marginLeft: 50
           }}
         >
-          <Text>{this.props.mon1}</Text>
+          {/* <Text>{this.props.mon1}</Text>
           <Text>{this.props.mon2}</Text>
-          <Text>{this.props.mon3}</Text>
+          <Text>{this.props.mon3}</Text> */}
+          {this.renderFoodDetail()}
         </View>
         <View
           style={{

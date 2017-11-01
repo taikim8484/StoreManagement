@@ -9,8 +9,6 @@ export default (styles = StyleSheet.create({
     marginLeft: 10
   },
   iconTouch: {
-    width: 20,
-    height: 20,
-    marginTop: 30
+    marginTop: 28
   }
 }));
