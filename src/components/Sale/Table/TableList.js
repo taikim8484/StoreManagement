@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, Text, Button, FlatList } from "react-native";
 
 import { AppHeader } from "../../Header";
-import TableDetail from "./TableDetail";
+import TableCell from "./TableCell";
 
 const info = [
   {
@@ -37,23 +37,13 @@ export class Table extends Component {
   };
   render() {
     return (
-      <View
-        style={{
-          flexDirection: "column",
-          flex: 1
-        }}
-      >
+      <View style={{ flexDirection: "column", flex: 1 }}>
         <AppHeader title="TABLE" />
-        <View
-          style={{
-            backgroundColor: "#EBEBEB",
-            flex: 9
-          }}
-        >
+        <View style={{ backgroundColor: "#EBEBEB", flex: 9 }}>
           <FlatList
             data={info}
             renderItem={({ item }) => (
-              <TableDetail
+              <TableCell
                 key={item.idTable}
                 soban={item.idTable}
                 foods={item.foods}

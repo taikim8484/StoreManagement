@@ -3,18 +3,35 @@ import { Text, View, Image, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
 import styles from "./style";
+
+const SIZE_ICON = 20;
 //Local variables
 const homeIcon = (
-  <Icon name="md-home" size={20} color="white" style={styles.iconTouch} />
+  <Icon
+    name="md-home"
+    size={SIZE_ICON}
+    color="white"
+    style={styles.iconTouch}
+  />
 );
 const saleIcon = (
-  <Icon name="md-basket" size={20} color="white" style={styles.iconTouch} />
+  <Icon
+    name="md-basket"
+    size={SIZE_ICON}
+    color="white"
+    style={styles.iconTouch}
+  />
 );
 const reportIcon = (
-  <Icon name="md-bookmarks" size={20} color="white" style={styles.iconTouch} />
+  <Icon
+    name="md-bookmarks"
+    size={SIZE_ICON}
+    color="white"
+    style={styles.iconTouch}
+  />
 );
 const settingIcon = (
-  <Icon name="md-cog" size={20} color="white" style={styles.iconTouch} />
+  <Icon name="md-cog" size={SIZE_ICON} color="white" style={styles.iconTouch} />
 );
 
 class Drawer extends Component {
