@@ -1,13 +1,19 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-
-const TableFood = () => {
-  return <Text>This is TableFood</Text>;
+import { View, Text, TouchableOpacity, FlatList } from "react-native";
+import FoodCell from "./FoodCell";
+const TableFood = props => {
+  return (
+    <FlatList
+      data={props.foods}
+      renderItem={({ item }) => <FoodCell food={item} />}
+    />
+  );
 };
 
 class TableDetail extends Component {
   state = {};
   render() {
+    const table = this.props.item;
     return (
       <View
         style={{
@@ -19,13 +25,13 @@ class TableDetail extends Component {
       >
         <View style={{ flexDirection: "row", height: 60 }}>
           <View style={{ flex: 2 }}>
-            <Text>idTable: 1</Text>
+            <Text>idTable: {table.idTable}</Text>
           </View>
           <View style={{ flex: 8 }}>
-            <Text>Total: 75.000</Text>
+            <Text>Total: {table.money}</Text>
           </View>
         </View>
-        <TableFood />
+        <TableFood foods={table.foods} />
       </View>
     );
   }
