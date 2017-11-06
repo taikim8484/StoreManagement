@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import { View, Text, Button, FlatList } from "react-native";
 
 import { AppHeader } from "../../Header";
+<<<<<<< HEAD:src/components/Sale/Table/TableList.js
 import TableCell from "./TableCell";
+=======
+import TableDetail from "./TableDetail";
+import NewTableDetail from "./NewTableDetail";
+>>>>>>> 6ea17169ece9a12e462dfb3b77727a9ba54e0b6a:src/components/Sale/Table/Table.js
 
 const info = [
   {
@@ -40,18 +45,14 @@ export class Table extends Component {
       <View style={{ flexDirection: "column", flex: 1 }}>
         <AppHeader title="TABLE" />
         <View style={{ backgroundColor: "#EBEBEB", flex: 9 }}>
-          <FlatList
-            data={info}
-            renderItem={({ item }) => (
-              <TableCell
-                key={item.idTable}
-                soban={item.idTable}
-                foods={item.foods}
-                sotien={item.money}
-                navigation={this.props.navigation}
-              />
-            )}
-          />
+          {/* <TableDetail
+            key={item.idTable}
+            soban={item.idTable}
+            foods={item.foods}
+            sotien={item.money}
+            navigation={this.props.navigation}
+          /> */}
+          <FlatList data={info} renderItem={({ item }) => <NewTableDetail />} />
         </View>
       </View>
     );
