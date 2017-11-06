@@ -3,6 +3,7 @@ import { View, Text, Button, FlatList } from "react-native";
 
 import { AppHeader } from "../../Header";
 import TableDetail from "./TableDetail";
+import NewTableDetail from "./NewTableDetail";
 
 const info = [
   {
@@ -37,31 +38,17 @@ export class Table extends Component {
   };
   render() {
     return (
-      <View
-        style={{
-          flexDirection: "column",
-          flex: 1
-        }}
-      >
+      <View style={{ flexDirection: "column", flex: 1 }}>
         <AppHeader title="TABLE" />
-        <View
-          style={{
-            backgroundColor: "#EBEBEB",
-            flex: 9
-          }}
-        >
-          <FlatList
-            data={info}
-            renderItem={({ item }) => (
-              <TableDetail
-                key={item.idTable}
-                soban={item.idTable}
-                foods={item.foods}
-                sotien={item.money}
-                navigation={this.props.navigation}
-              />
-            )}
-          />
+        <View style={{ backgroundColor: "#EBEBEB", flex: 9 }}>
+          {/* <TableDetail
+            key={item.idTable}
+            soban={item.idTable}
+            foods={item.foods}
+            sotien={item.money}
+            navigation={this.props.navigation}
+          /> */}
+          <FlatList data={info} renderItem={({ item }) => <NewTableDetail />} />
         </View>
       </View>
     );
