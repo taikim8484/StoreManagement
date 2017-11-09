@@ -5,7 +5,7 @@ import { AppHeader } from "../../Header";
 import TableCell from "./TableCell";
 import NewTableDetail from "./NewTableDetail";
 
-import * as actions from "../../../actions/tableListAction";
+import * as actions from "../../../actions";
 import { connect } from "react-redux";
 
 export class Table extends Component {
@@ -18,6 +18,10 @@ export class Table extends Component {
     this.props.getTableList();
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log("AloALo", nextProps);
+  }
+
   render() {
     return (
       <View style={{ flexDirection: "column", flex: 1 }}>
@@ -25,9 +29,8 @@ export class Table extends Component {
         <View style={{ backgroundColor: "#EBEBEB", flex: 9 }}>
           <FlatList
             data={this.props.tableList}
-            renderItem={({ item }) => (
-              <NewTableDetail item={item} key={item.idTable} />
-            )}
+            renderItem={({ item }) => <NewTableDetail item={item} />}
+            keyExtractor={item => item.idTable}
           />
         </View>
       </View>

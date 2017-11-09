@@ -1,4 +1,8 @@
-import { GET_TABLE_LIST } from "../actions/constants";
+import {
+  GET_TABLE_LIST,
+  INCREASE_FOOD,
+  DECREASE_FOOD
+} from "../actions/constants";
 
 const initialState = {
   tableList: []
@@ -37,7 +41,17 @@ export default (state = initialState, actions) => {
         tableList: info
       };
       break;
-
+    case INCREASE_FOOD:
+      console.log("Increase Table Food", actions.payload);
+      return {
+        tableList: actions.payload
+      };
+      break;
+    case DECREASE_FOOD:
+      return {
+        tableList: actions.payload
+      };
+      break;
     default:
       return state;
       break;

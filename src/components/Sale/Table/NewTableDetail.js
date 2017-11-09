@@ -5,7 +5,9 @@ const TableFood = props => {
   return (
     <FlatList
       data={props.foods}
-      renderItem={({ item }) => <FoodCell food={item} />}
+      renderItem={({ item, index }) => (
+        <FoodCell food={item} idTable={props.idTable} index={index} />
+      )}
     />
   );
 };
@@ -31,7 +33,7 @@ class TableDetail extends Component {
             <Text>Total: {table.money}</Text>
           </View>
         </View>
-        <TableFood foods={table.foods} />
+        <TableFood foods={table.foods} idTable={table.idTable} />
       </View>
     );
   }
