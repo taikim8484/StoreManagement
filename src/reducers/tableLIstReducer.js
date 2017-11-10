@@ -36,19 +36,23 @@ const info = [
 
 export default (state = initialState, actions) => {
   switch (actions.type) {
-    case GET_TABLE_LIST:
+    case GET_TABLE_LIST: {
       return {
+        ...state,
         tableList: info
       };
       break;
+    }
     case INCREASE_FOOD:
-      console.log("Increase Table Food", actions.payload);
       return {
+        ...state,
         tableList: actions.payload
       };
       break;
+
     case DECREASE_FOOD:
       return {
+        ...state,
         tableList: actions.payload
       };
       break;

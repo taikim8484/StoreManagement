@@ -5,7 +5,6 @@ import * as actions from "../../../actions";
 import { connect } from "react-redux";
 
 class FoodCell extends Component {
-  state = {};
   increaseFood() {
     this.props.increaseFood(this.props.idTable, this.props.index);
   }

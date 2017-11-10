@@ -41,6 +41,7 @@ export class Table extends Component {
 const mapStateToProps = state => {
   return {
     tableList: state.tableListReducer.tableList
+    //tableList: state.tableListReducer.tableList.map(id => state.tableListReducer.tableList[id])
   };
 };
 
