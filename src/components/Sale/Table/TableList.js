@@ -7,6 +7,8 @@ import NewTableDetail from "./NewTableDetail";
 
 import * as actions from "../../../actions";
 import { connect } from "react-redux";
+import { initDatabase } from "../../../configDatabase/service";
+import schema from "../../../configDatabase/schema";
 
 export class Table extends Component {
   static navigationOptions = {
@@ -15,6 +17,7 @@ export class Table extends Component {
   };
 
   componentWillMount() {
+    initDatabase();
     this.props.getTableList();
   }
 
