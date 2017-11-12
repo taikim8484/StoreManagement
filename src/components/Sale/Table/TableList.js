@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Button, FlatList } from "react-native";
+import { View, Text, Button, FlatList, ActivityIndicator } from "react-native";
 
 import { AppHeader } from "../../Header";
 import TableCell from "./TableCell";
@@ -26,11 +26,15 @@ export class Table extends Component {
       <View style={{ flexDirection: "column", flex: 1 }}>
         <AppHeader title="TABLE" />
         <View style={{ backgroundColor: "#EBEBEB", flex: 9 }}>
-          <FlatList
-            data={this.props.tableList}
-            renderItem={({ item }) => <NewTableDetail order={item} />}
-            keyExtractor={item => item.idTable}
-          />
+          {this.props.isLoading ? (
+            <ActivityIndicator animating color={"blue"} size={"small"} />
+          ) : (
+            <FlatList
+              data={this.props.tableList}
+              renderItem={({ item }) => <NewTableDetail order={item} />}
+              keyExtractor={item => item.idTable}
+            />
+          )}
         </View>
       </View>
     );
@@ -39,7 +43,8 @@ export class Table extends Component {
 
 const mapStateToProps = state => {
   return {
-    tableList: state.tableListReducer.tableList
+    tableList: state.tableListReducer.tableList,
+    isLoading: state.tableListReducer.isLoading
     //tableList: state.tableListReducer.tableList.map(id => state.tableListReducer.tableList[id])
   };
 };
