@@ -1,11 +1,13 @@
 import {
   GET_TABLE_LIST,
+  GETTING_TABLE_LIST,
   INCREASE_FOOD,
   DECREASE_FOOD
 } from "../actions/constants";
 
 const initialState = {
-  tableList: []
+  tableList: [],
+  isLoading: false
 };
 
 // const info = [
@@ -36,10 +38,18 @@ const initialState = {
 
 export default (state = initialState, actions) => {
   switch (actions.type) {
+    case GETTING_TABLE_LIST: {
+      return {
+        ...state,
+        isLoading: true
+      };
+      break;
+    }
     case GET_TABLE_LIST: {
       return {
         ...state,
-        tableList: actions.payload
+        tableList: actions.payload,
+        isLoading: false
       };
       break;
     }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Button, FlatList } from "react-native";
+import { View, Text, Button, FlatList, ActivityIndicator } from "react-native";
 
 import { AppHeader } from "../../Header";
 import TableCell from "./TableCell";
@@ -8,7 +8,7 @@ import NewTableDetail from "./NewTableDetail";
 import * as actions from "../../../actions";
 import { connect } from "react-redux";
 
-import { initDatabase } from "../../../configDatabase/service";
+import { initDatabase, isDatabaseEmpty } from "../../../configDatabase/service";
 import realm from "../../../configDatabase/schema";
 
 export class Table extends Component {
@@ -18,19 +18,31 @@ export class Table extends Component {
   };
 
   componentDidMount() {
-    //initDatabase();
-    this.props.getTableList();
+    if (isDatabaseEmpty()) {
+      initDatabase();
+    } else {
+      this.props.getTableList();
+    }
   }
   render() {
     return (
       <View style={{ flexDirection: "column", flex: 1 }}>
         <AppHeader title="TABLE" />
         <View style={{ backgroundColor: "#EBEBEB", flex: 9 }}>
-          <FlatList
-            data={this.props.tableList}
-            renderItem={({ item }) => <NewTableDetail order={item} />}
-            keyExtractor={item => item.idTable}
-          />
+          {this.props.isLoading ? (
+            <ActivityIndicator
+              animating
+              color={"blue"}
+              size={"small"}
+              style={{ justifyContent: "center" }}
+            />
+          ) : (
+            <FlatList
+              data={this.props.tableList}
+              renderItem={({ item }) => <NewTableDetail order={item} />}
+              keyExtractor={item => item.idTable}
+            />
+          )}
         </View>
       </View>
     );
@@ -39,8 +51,8 @@ export class Table extends Component {
 
 const mapStateToProps = state => {
   return {
-    tableList: state.tableListReducer.tableList
-    //tableList: state.tableListReducer.tableList.map(id => state.tableListReducer.tableList[id])
+    tableList: state.tableListReducer.tableList,
+    isLoading: state.tableListReducer.isLoading
   };
 };
 

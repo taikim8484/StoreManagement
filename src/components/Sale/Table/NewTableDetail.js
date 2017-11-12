@@ -8,6 +8,7 @@ const TableFood = props => {
       renderItem={({ item, index }) => (
         <FoodCell orderDetail={item} idTable={props.idTable} index={index} />
       )}
+      keyExtractor={item => item.id}
     />
   );
 };

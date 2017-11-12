@@ -1,3 +1,4 @@
 export const GET_TABLE_LIST = "GET_TABLE_LIST";
+export const GETTING_TABLE_LIST = "GETTING_TABLE_LIST";
 export const INCREASE_FOOD = "INCREASE_FOOD";
 export const DECREASE_FOOD = "DECREASE_FOOD";
