@@ -12,7 +12,8 @@ class FoodCell extends Component {
     this.props.decreaseFood(this.props.idTable, this.props.index);
   }
   render() {
-    const { food } = this.props;
+    const { orderDetail } = this.props;
+    console.log("AAA", orderDetail.food);
     return (
       <View style={{ flexDirection: "row", height: 30 }}>
         <TouchableOpacity
@@ -25,7 +26,7 @@ class FoodCell extends Component {
           style={{ flex: 3, justifyContent: "center", alignContent: "center" }}
         >
           <Text>
-            {food.name} -- {food.amount}
+            {orderDetail.food.name} -- {orderDetail.amount}
           </Text>
         </View>
         <TouchableOpacity
