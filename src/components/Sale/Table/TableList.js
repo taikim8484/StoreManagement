@@ -30,7 +30,12 @@ export class Table extends Component {
         <AppHeader title="TABLE" />
         <View style={{ backgroundColor: "#EBEBEB", flex: 9 }}>
           {this.props.isLoading ? (
-            <ActivityIndicator animating color={"blue"} size={"small"} />
+            <ActivityIndicator
+              animating
+              color={"blue"}
+              size={"small"}
+              style={{ justifyContent: "center" }}
+            />
           ) : (
             <FlatList
               data={this.props.tableList}
@@ -48,7 +53,6 @@ const mapStateToProps = state => {
   return {
     tableList: state.tableListReducer.tableList,
     isLoading: state.tableListReducer.isLoading
-    //tableList: state.tableListReducer.tableList.map(id => state.tableListReducer.tableList[id])
   };
 };
 
