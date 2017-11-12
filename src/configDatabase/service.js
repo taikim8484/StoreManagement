@@ -78,3 +78,7 @@ export function initDatabase() {
     console.log("Error", error);
   }
 }
+
+export function isDatabaseEmpty() {
+  return database.objects("Table").length === 0 ? true : false;
+}

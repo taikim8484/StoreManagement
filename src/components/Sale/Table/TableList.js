@@ -8,7 +8,7 @@ import NewTableDetail from "./NewTableDetail";
 import * as actions from "../../../actions";
 import { connect } from "react-redux";
 
-import { initDatabase } from "../../../configDatabase/service";
+import { initDatabase, isDatabaseEmpty } from "../../../configDatabase/service";
 import realm from "../../../configDatabase/schema";
 
 export class Table extends Component {
@@ -18,8 +18,11 @@ export class Table extends Component {
   };
 
   componentDidMount() {
-    //initDatabase();
-    this.props.getTableList();
+    if (isDatabaseEmpty()) {
+      initDatabase();
+    } else {
+      this.props.getTableList();
+    }
   }
   render() {
     return (
