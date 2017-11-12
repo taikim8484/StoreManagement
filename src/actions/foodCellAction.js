@@ -26,58 +26,49 @@ const info = [
   }
 ];
 
-function mapping(table, index, change) {
-  // change == "Minus" ? table.foods[index].amount-- : table.foods[index].amount++;
-  // return table;
-  var newFoods;
-  if (change === "Plus")
-    newFoods = table.foods.map(
-      (food, indexFood) =>
-        index === indexFood ? mappingFoodPlus(food, change) : food
-    );
-  else
-    newFoods = table.foods.map(
-      (food, indexFood) =>
-        index === indexFood ? mappingFoodMinus(food, change) : food
-    );
-  console.log("================New food=================");
-  console.log(newFoods);
-  console.log("====================================");
-  return { ...table, foods: newFoods };
+function changeFoodAmount(isIncrease) {
+  if (isIncrease) {
+    return info.map(table => {
+      if (table.idTable == 1) {
+        return {
+          ...table,
+          foods: table.foods.map((food, index) => {
+            if (index == 0) {
+              return { ...food, amount: food.amount + 1 };
+            } else {
+              return food;
+            }
+          })
+        };
+      } else {
+        return table;
+      }
+    });
+  } else {
+    return info.map(table => {
+      if (table.idTable == 1) {
+        return {
+          ...table,
+          foods: table.foods.map((food, index) => {
+            if (index == 0) {
+              return { ...food, amount: food.amount - 1 };
+            } else {
+              return food;
+            }
+          })
+        };
+      } else {
+        return table;
+      }
+    });
+  }
 }
-
-const mappingFoodPlus = food => {
-  //const newAmount = change === "Minus" ? food.amount-- : food.amount++;
-  let newAmount = food.amount + 1;
-  console.log("===============new amount====================");
-  console.log(newAmount);
-  console.log("====================================");
-  return { ...food, amount: newAmount };
-};
-const mappingFoodMinus = food => {
-  //const newAmount = change === "Minus" ? food.amount-- : food.amount++;
-  let newAmount = food.amount - 1;
-  console.log("===============new amount====================");
-  console.log(newAmount);
-  console.log("====================================");
-  return { ...food, amount: newAmount };
-};
 export const increaseFood = (idTable, indexFood) => async dispatch => {
-  const payload = await info.map(
-    table =>
-      table.idTable === idTable ? mapping(table, indexFood, "Plus") : table
-  );
-  console.log("===============info================");
-  console.log(info);
-  console.log("====================================");
-
+  const payload = changeFoodAmount(true);
   dispatch({ type: INCREASE_FOOD, payload });
 };
 
 export const decreaseFood = (idTable, indexFood) => async dispatch => {
-  const payload = await info.map(
-    table =>
-      table.idTable === idTable ? mapping(table, indexFood, "Minus") : table
-  );
+  const payload = changeFoodAmount(false);
   dispatch({ type: DECREASE_FOOD, payload });
 };

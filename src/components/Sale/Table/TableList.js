@@ -17,12 +17,8 @@ export class Table extends Component {
   };
 
   componentWillMount() {
-    initDatabase();
+    // initDatabase();
     this.props.getTableList();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log("AloALo", nextProps);
   }
 
   render() {
