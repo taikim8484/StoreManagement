@@ -26,6 +26,9 @@ import database from "../configDatabase/schema";
 //   }
 // ];
 
+const isDecreasable = amount => {
+  return amount === 0 ? false : true;
+};
 function changeFoodAmount(isIncrease, idTable, idOrderDetail) {
   try {
     let order = database.objects("Order").filtered(`idTable = ${idTable}`);
@@ -36,7 +39,7 @@ function changeFoodAmount(isIncrease, idTable, idOrderDetail) {
       if (isIncrease) {
         orderDetail[0].amount++;
       } else {
-        orderDetail[0].amount--;
+        if (isDecreasable(orderDetail[0].amount)) orderDetail[0].amount--;
       }
     });
   } catch (error) {
