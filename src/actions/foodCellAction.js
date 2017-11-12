@@ -1,74 +1,56 @@
-import { INCREASE_FOOD, DECREASE_FOOD } from "./constants";
+import { GET_TABLE_LIST } from "./constants";
+import database from "../configDatabase/schema";
+// const info = [
+//   {
+//     idTable: 1,
+//     foods: [
+//       { name: "Cafe sữa", amount: 1 },
+//       { name: "Sting", amount: 1 },
+//       { name: "Redbull", amount: 2 }
+//     ],
+//     money: 75000
+//   },
+//   {
+//     idTable: 2,
+//     foods: [
+//       { name: "Cam vat", amount: 4 },
+//       { name: "Meo den", amount: 1 },
+//       { name: "Cafe den", amount: 2 }
+//     ],
+//     money: 425000
+//   },
+//   {
+//     idTable: 3,
+//     foods: [{ name: "Tra sữa", amount: 90 }, { name: "Khan lanh", amount: 1 }],
+//     money: 89000
+//   }
+// ];
 
-const info = [
-  {
-    idTable: 1,
-    foods: [
-      { name: "Cafe sữa", amount: 1 },
-      { name: "Sting", amount: 1 },
-      { name: "Redbull", amount: 2 }
-    ],
-    money: 75000
-  },
-  {
-    idTable: 2,
-    foods: [
-      { name: "Cam vat", amount: 4 },
-      { name: "Meo den", amount: 1 },
-      { name: "Cafe den", amount: 2 }
-    ],
-    money: 425000
-  },
-  {
-    idTable: 3,
-    foods: [{ name: "Tra sữa", amount: 90 }, { name: "Khan lanh", amount: 1 }],
-    money: 89000
-  }
-];
+function changeFoodAmount(isIncrease, idTable, idOrderDetail) {
+  try {
+    let order = database.objects("Order").filtered(`idTable = ${idTable}`);
 
-function changeFoodAmount(isIncrease) {
-  if (isIncrease) {
-    return info.map(table => {
-      if (table.idTable == 1) {
-        return {
-          ...table,
-          foods: table.foods.map((food, index) => {
-            if (index == 0) {
-              return { ...food, amount: food.amount + 1 };
-            } else {
-              return food;
-            }
-          })
-        };
+    let orderDetail = order[0].orderDetails.filtered(`id = ${idOrderDetail}`);
+
+    database.write(() => {
+      if (isIncrease) {
+        orderDetail[0].amount++;
       } else {
-        return table;
+        orderDetail[0].amount--;
       }
     });
-  } else {
-    return info.map(table => {
-      if (table.idTable == 1) {
-        return {
-          ...table,
-          foods: table.foods.map((food, index) => {
-            if (index == 0) {
-              return { ...food, amount: food.amount - 1 };
-            } else {
-              return food;
-            }
-          })
-        };
-      } else {
-        return table;
-      }
-    });
+  } catch (error) {
+    console.log(error);
   }
 }
-export const increaseFood = (idTable, indexFood) => async dispatch => {
-  const payload = changeFoodAmount(true);
-  dispatch({ type: INCREASE_FOOD, payload });
+export const increaseFood = (idTable, idOrderDetail) => async dispatch => {
+  changeFoodAmount(true, idTable, idOrderDetail);
+  let payload = await database.objects("Order");
+  dispatch({ type: GET_TABLE_LIST, payload });
 };
 
-export const decreaseFood = (idTable, indexFood) => async dispatch => {
-  const payload = changeFoodAmount(false);
-  dispatch({ type: DECREASE_FOOD, payload });
+export const decreaseFood = (idTable, idOrderDetail) => async dispatch => {
+  changeFoodAmount(false, idTable, idOrderDetail);
+  let payload = await database.objects("Order");
+  dispatch({ type: GET_TABLE_LIST, payload });
 };

@@ -8,12 +8,12 @@ export function initDatabase() {
       database.create("Table", { id: 2, name: "102" });
       database.create("Table", { id: 3, name: "103" });
       //Create Category
-      let drink = database.create("Category", {
+      const drink = database.create("Category", {
         id: 1,
         name: "Thuc uong",
         foods: []
       });
-      let another = database.create("Category", {
+      const another = database.create("Category", {
         id: 2,
         name: "Khac",
         foods: []
@@ -45,30 +45,30 @@ export function initDatabase() {
       drink.foods.push(drink_id3);
       another.foods.push(another_id4);
       //Create OrderDetail
-      let orderdetail_1 = database.create("OrderDetail", {
+      const orderdetail_1 = database.create("OrderDetail", {
         id: 1,
         food: drink_id2,
         amount: 2
       });
-      let orderdetail_2 = database.create("OrderDetail", {
+      const orderdetail_2 = database.create("OrderDetail", {
         id: 2,
         food: drink_id1,
         amount: 1
       });
-      let orderdetail_3 = database.create("OrderDetail", {
+      const orderdetail_3 = database.create("OrderDetail", {
         id: 3,
         food: drink_id3,
         amount: 4
       });
-      let orderdetail_4 = database.create("OrderDetail", {
+      const orderdetail_4 = database.create("OrderDetail", {
         id: 4,
         food: another_id4,
         amount: 5
       });
       //Create Order
-      let order1 = database.create("Order", { idTable: 1, orderDetails: [] });
-      let order2 = database.create("Order", { idTable: 2, orderDetails: [] });
-      let order3 = database.create("Order", { idTable: 3, orderDetails: [] });
+      const order1 = database.create("Order", { idTable: 1, orderDetails: [] });
+      const order2 = database.create("Order", { idTable: 2, orderDetails: [] });
+      const order3 = database.create("Order", { idTable: 3, orderDetails: [] });
       order1.orderDetails.push(orderdetail_1);
       order1.orderDetails.push(orderdetail_2);
       order2.orderDetails.push(orderdetail_3);
@@ -83,14 +83,14 @@ export function isDatabaseEmpty() {
   return database.objects("Table").length === 0 ? true : false;
 }
 
-export function deleteDatabase() {
+export function deconsteDatabase() {
   try {
     database.write(() => {
-      database.delete(database.objects("Table"));
-      database.delete(database.objects("Food"));
-      database.delete(database.objects("Category"));
-      database.delete(database.objects("Order"));
-      database.delete(database.objects("OrderDetail"));
+      database.deconste(database.objects("Table"));
+      database.deconste(database.objects("Food"));
+      database.deconste(database.objects("Category"));
+      database.deconste(database.objects("Order"));
+      database.deconste(database.objects("OrderDetail"));
     });
   } catch (error) {
     console.log(error);

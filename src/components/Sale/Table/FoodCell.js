@@ -6,10 +6,10 @@ import { connect } from "react-redux";
 
 class FoodCell extends Component {
   increaseFood() {
-    this.props.increaseFood(this.props.idTable, this.props.index);
+    this.props.increaseFood(this.props.idTable, this.props.orderDetail.id);
   }
   decreaseFood() {
-    this.props.decreaseFood(this.props.idTable, this.props.index);
+    this.props.decreaseFood(this.props.idTable, this.props.orderDetail.id);
   }
   render() {
     const { orderDetail } = this.props;

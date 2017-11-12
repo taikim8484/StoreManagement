@@ -5,8 +5,8 @@ const TableFood = props => {
   return (
     <FlatList
       data={props.orderDetails}
-      renderItem={({ item, index }) => (
-        <FoodCell orderDetail={item} idTable={props.idTable} index={index} />
+      renderItem={({ item }) => (
+        <FoodCell orderDetail={item} idTable={props.idTable} />
       )}
       keyExtractor={item => item.id}
     />
