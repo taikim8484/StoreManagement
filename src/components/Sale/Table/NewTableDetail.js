@@ -4,9 +4,9 @@ import FoodCell from "./FoodCell";
 const TableFood = props => {
   return (
     <FlatList
-      data={props.foods}
+      data={props.orderDetails}
       renderItem={({ item, index }) => (
-        <FoodCell food={item} idTable={props.idTable} index={index} />
+        <FoodCell orderDetail={item} idTable={props.idTable} index={index} />
       )}
     />
   );
@@ -14,8 +14,17 @@ const TableFood = props => {
 
 class TableDetail extends Component {
   state = {};
-  render() {
+  getTotal() {
+    var total = 0;
     const table = this.props.item;
+    for (var i = 0; i < table.length; i++) {
+      total += table[i].amount;
+    }
+    return total;
+  }
+  render() {
+    const { order } = this.props;
+    console.log("Order", order.orderDetails[0].id);
     return (
       <View
         style={{
@@ -27,13 +36,13 @@ class TableDetail extends Component {
       >
         <View style={{ flexDirection: "row", height: 60 }}>
           <View style={{ flex: 2 }}>
-            <Text>idTable: {table.idTable}</Text>
+            <Text>Table: {order.idTable}</Text>
           </View>
           <View style={{ flex: 8 }}>
-            <Text>Total: {table.money}</Text>
+            <Text>Total:000 </Text>
           </View>
         </View>
-        <TableFood foods={table.foods} idTable={table.idTable} />
+        <TableFood orderDetails={order.orderDetails} idTable={order.idTable} />
       </View>
     );
   }

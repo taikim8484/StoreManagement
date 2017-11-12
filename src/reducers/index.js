@@ -8,5 +8,4 @@ const appReducer = combineReducers({
   navReducer,
   tableListReducer
 });
-
 export default appReducer;

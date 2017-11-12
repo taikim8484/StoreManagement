@@ -7,8 +7,9 @@ import NewTableDetail from "./NewTableDetail";
 
 import * as actions from "../../../actions";
 import { connect } from "react-redux";
+
 import { initDatabase } from "../../../configDatabase/service";
-import schema from "../../../configDatabase/schema";
+import realm from "../../../configDatabase/schema";
 
 export class Table extends Component {
   static navigationOptions = {
@@ -16,11 +17,10 @@ export class Table extends Component {
     tabBarLabel: "Table"
   };
 
-  componentWillMount() {
-    // initDatabase();
+  componentDidMount() {
+    //initDatabase();
     this.props.getTableList();
   }
-
   render() {
     return (
       <View style={{ flexDirection: "column", flex: 1 }}>
@@ -28,7 +28,7 @@ export class Table extends Component {
         <View style={{ backgroundColor: "#EBEBEB", flex: 9 }}>
           <FlatList
             data={this.props.tableList}
-            renderItem={({ item }) => <NewTableDetail item={item} />}
+            renderItem={({ item }) => <NewTableDetail order={item} />}
             keyExtractor={item => item.idTable}
           />
         </View>

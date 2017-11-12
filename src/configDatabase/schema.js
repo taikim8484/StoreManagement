@@ -29,17 +29,25 @@ Category.schema = {
     foods: "Food[]"
   }
 };
-class Bill {}
-Bill.schema = {
-  name: "Bill",
+class Order {}
+Order.schema = {
+  name: "Order",
   properties: {
     idTable: "int",
+    orderDetails: "OrderDetail[]"
+  }
+};
+class OrderDetail {}
+OrderDetail.schema = {
+  name: "OrderDetail",
+  properties: {
+    id: "int",
     food: "Food",
     amount: "int"
   }
 };
 
 let storeDatabase = new Realm({
-  schema: [Table]
+  schema: [Table, Food, Category, Order, OrderDetail]
 });
 export default storeDatabase;
