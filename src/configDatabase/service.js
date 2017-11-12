@@ -82,3 +82,17 @@ export function initDatabase() {
 export function isDatabaseEmpty() {
   return database.objects("Table").length === 0 ? true : false;
 }
+
+export function deleteDatabase() {
+  try {
+    database.write(() => {
+      database.delete(database.objects("Table"));
+      database.delete(database.objects("Food"));
+      database.delete(database.objects("Category"));
+      database.delete(database.objects("Order"));
+      database.delete(database.objects("OrderDetail"));
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
