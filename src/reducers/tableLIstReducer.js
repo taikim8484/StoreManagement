@@ -53,19 +53,6 @@ export default (state = initialState, actions) => {
       };
       break;
     }
-    case INCREASE_FOOD:
-      return {
-        ...state,
-        tableList: actions.payload
-      };
-      break;
-
-    case DECREASE_FOOD:
-      return {
-        ...state,
-        tableList: actions.payload
-      };
-      break;
     default:
       return state;
       break;

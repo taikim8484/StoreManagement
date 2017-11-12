@@ -28,7 +28,7 @@ import Calculator from "./components/Sale/Calculator";
 //-------------import for Stack Table---------------
 import ConfirmOrder from "./components/Sale/Order/ConfirmOrder";
 import Product from "./components/Sale/Table/Product";
-import Checkout from "./components/Sale/Table/Checkout";
+//import Checkout from "./components/Sale/Table/Checkout";
 
 const StackTable = StackNavigator(
   {
@@ -38,9 +38,9 @@ const StackTable = StackNavigator(
     StackProduct: {
       screen: Product
     },
-    StackCheckout: {
-      screen: Checkout
-    },
+    // StackCheckout: {
+    //   screen: Checkout
+    // },
     StackConfirmOrder: {
       screen: ConfirmOrder
     }
