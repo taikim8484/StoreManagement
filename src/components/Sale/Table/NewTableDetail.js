@@ -15,16 +15,14 @@ const TableFood = props => {
 class TableDetail extends Component {
   state = {};
   getTotal() {
-    var total = 0;
-    const table = this.props.item;
-    for (var i = 0; i < table.length; i++) {
-      total += table[i].amount;
-    }
-    return total;
+    const { orderDetails } = this.props.order;
+    return orderDetails.reduce((total, orderDetail) => {
+      return (total += orderDetail.food.price * orderDetail.amount);
+    }, 0);
   }
   render() {
     const { order } = this.props;
-    console.log("Order", order.orderDetails[0].id);
+    console.log("Total", this.getTotal());
     return (
       <View
         style={{
@@ -39,7 +37,7 @@ class TableDetail extends Component {
             <Text>Table: {order.idTable}</Text>
           </View>
           <View style={{ flex: 8 }}>
-            <Text>Total:000 </Text>
+            <Text>Total:{this.getTotal()} </Text>
           </View>
         </View>
         <TableFood orderDetails={order.orderDetails} idTable={order.idTable} />
