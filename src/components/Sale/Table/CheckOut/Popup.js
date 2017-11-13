@@ -3,9 +3,8 @@ import React, { Component } from "react";
 import { Button } from "native-base";
 import { connect } from "react-redux";
 import * as actions from "../../../../actions";
-
+import database from "../../../../configDatabase/schema";
 const Popup = props => {
-  console.log("Props", props);
   return (
     <View>
       <BillDetail idTable={props.idTable} />

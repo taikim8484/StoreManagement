@@ -2,9 +2,10 @@ import { GET_TABLE_LIST } from "./constants";
 import database from "../configDatabase/schema";
 
 export const checkOut = idTable => async dispatch => {
-  let order = database.objects("Order").filtered(`idTable = ${idTable}`);
+  const order = database.objects("Order").filtered(`idTable = ${idTable}`);
   try {
     database.write(() => {
+      database.create("Bill", { id: 0, order: order[0], date: new Date() });
       database.delete(order);
     });
   } catch (error) {

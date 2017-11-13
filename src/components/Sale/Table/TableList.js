@@ -7,7 +7,7 @@ import NewTableDetail from "./NewTableDetail";
 
 import * as actions from "../../../actions";
 import { connect } from "react-redux";
-
+import database from "../../../configDatabase/schema";
 import { initDatabase, isDatabaseEmpty } from "../../../configDatabase/service";
 import realm from "../../../configDatabase/schema";
 
