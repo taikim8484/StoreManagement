@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import FoodCell from "./FoodCell";
-import Checkout from "./Checkout";
+import CheckOut from "./CheckOut";
 const TableFood = props => {
   return (
     <FlatList
@@ -41,7 +41,7 @@ class TableDetail extends Component {
           <View style={{ flex: 4 }}>
             <Text>Total:{this.getTotal()} </Text>
           </View>
-          <Checkout idTable={order.idTable} />
+          <CheckOut idTable={order.idTable} />
         </View>
         <TableFood orderDetails={order.orderDetails} idTable={order.idTable} />
       </View>
