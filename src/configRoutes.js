@@ -19,7 +19,7 @@ import Drawer from "./components/Drawer";
 import Home from "./components/Home";
 import Sale from "./components/Sale/Sale";
 import Report from "./components/Report";
-import Setting from "./components/Setting/Setting";
+import Setting from "./components/Setting";
 //-------------import for Tab Sale---------------
 import Table from "./components/Sale/Table/TableList";
 import Order from "./components/Sale/Order/Order";

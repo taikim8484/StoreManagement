@@ -18,7 +18,7 @@ export class Details extends Component {
           }}
         >
           <Text style={{ color: "#68D0FE", marginLeft: 10 }}>
-            {this.props.textDetails}
+            Ban: {this.props.table.name}
           </Text>
         </View>
         <View
@@ -31,9 +31,7 @@ export class Details extends Component {
             justifyContent: "center"
           }}
         >
-          <Text style={{ textAlign: "center" }}>
-            {this.props.numberDetails}
-          </Text>
+          <Text style={{ textAlign: "center" }}>Total: </Text>
         </View>
       </View>
     );

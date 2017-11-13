@@ -1,40 +1,49 @@
 import React, { Component } from "react";
-import { View, Text, Button, FlatList } from "react-native";
+import { View, Text, Button, FlatList, ActivityIndicator } from "react-native";
 
 import { AppHeader } from "./Header";
 import Details from "./Details";
-
-const info = [
-  { key: 1, title: "DOANH THU", value: "19.425.000 " },
-  { key: 2, title: "ORDER", value: "19.425.000 " },
-  { key: 3, title: "TIEN MAT", value: "19.425.000 " },
-  { key: 4, title: "ORDER", value: "19.425.000 " }
-];
+import { connect } from "react-redux";
+import * as actions from "../actions";
 export class Home extends Component {
   static navigationOptions = {
     drawerLabel: "Home"
   };
+  componentDidMount() {
+    this.props.getHome();
+  }
   render() {
+    const { tableList } = this.props;
+    console.log("NAME", tableList.name);
     return (
       <View style={{ flexDirection: "column", flex: 1 }}>
         <AppHeader title="HOME" navigation={this.props.navigation} />
         <View
           style={{ flex: 9, backgroundColor: "#EBEBEB", alignItems: "center" }}
         >
-          <FlatList
-            data={info}
-            renderItem={({ item }) => (
-              <Details
-                key={item.key}
-                textDetails={item.title}
-                numberDetails={item.value}
-              />
-            )}
-          />
+          {this.props.isLoading ? (
+            <ActivityIndicator
+              animating
+              color={"green"}
+              size={"small"}
+              style={{ justifyContent: "center" }}
+            />
+          ) : (
+            <FlatList
+              data={this.props.tableList}
+              renderItem={({ item }) => <Details table={item} />}
+              keyExtractor={item => item.id}
+            />
+          )}
         </View>
       </View>
     );
   }
 }
-
-export default Home;
+const mapStateToProps = state => {
+  return {
+    tableList: state.homeReducer.tableList,
+    isLoading: state.homeReducer.isLoading
+  };
+};
+export default connect(mapStateToProps, actions)(Home);
