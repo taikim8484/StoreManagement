@@ -46,8 +46,16 @@ OrderDetail.schema = {
     amount: "int"
   }
 };
-
+class Bill {}
+Bill.schema = {
+  name: "Bill",
+  properties: {
+    id: "int",
+    order: "Order",
+    date: "date"
+  }
+};
 let storeDatabase = new Realm({
-  schema: [Table, Food, Category, Order, OrderDetail]
+  schema: [Table, Food, Category, Order, OrderDetail, Bill]
 });
 export default storeDatabase;

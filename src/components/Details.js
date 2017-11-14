@@ -5,8 +5,13 @@ var { height, width } = Dimensions.get("window");
 
 export class Details extends Component {
   render() {
+    console.log("------------------------------------");
+    console.log("Props: ", this.props);
+    console.log("------------------------------------");
     return (
-      <View style={{ marginTop: 15 }}>
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate("StackProduct")}
+      >
         <View
           style={{
             borderBottomColor: "#CECFCA",
@@ -18,7 +23,7 @@ export class Details extends Component {
           }}
         >
           <Text style={{ color: "#68D0FE", marginLeft: 10 }}>
-            {this.props.textDetails}
+            Ban: {this.props.table.name}
           </Text>
         </View>
         <View
@@ -31,11 +36,9 @@ export class Details extends Component {
             justifyContent: "center"
           }}
         >
-          <Text style={{ textAlign: "center" }}>
-            {this.props.numberDetails}
-          </Text>
+          <Text style={{ textAlign: "center" }}>Total: </Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }
