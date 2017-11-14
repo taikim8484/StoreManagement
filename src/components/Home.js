@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import * as actions from "../actions";
 export class Home extends Component {
   static navigationOptions = {
+    header: null,
     drawerLabel: "Home"
   };
   componentDidMount() {
@@ -31,7 +32,9 @@ export class Home extends Component {
           ) : (
             <FlatList
               data={this.props.tableList}
-              renderItem={({ item }) => <Details table={item} />}
+              renderItem={({ item }) => (
+                <Details table={item} navigation={this.props.navigation} />
+              )}
               keyExtractor={item => item.id}
             />
           )}

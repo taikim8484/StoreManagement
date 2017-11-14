@@ -27,16 +27,13 @@ import Calculator from "./components/Sale/Calculator";
 //-----------------------------------------------
 //-------------import for Stack Table---------------
 import ConfirmOrder from "./components/Sale/Order/ConfirmOrder";
-import Product from "./components/Sale/Table/Product";
+import Product from "./components/Product";
 //import Checkout from "./components/Sale/Table/Checkout";
 
 const StackTable = StackNavigator(
   {
     StackTableList: {
       screen: Table
-    },
-    StackProduct: {
-      screen: Product
     },
     // StackCheckout: {
     //   screen: Checkout
@@ -72,11 +69,23 @@ const SaleTab = TabNavigator(
     }
   }
 );
-
+const StackHome = StackNavigator(
+  {
+    StackTableHome: {
+      screen: Home
+    },
+    StackProduct: {
+      screen: Product
+    }
+  },
+  {
+    headerMode: "screen"
+  }
+);
 export default (AppDrawer = DrawerNavigator(
   {
     AppHome: {
-      screen: Home
+      screen: StackHome
     },
     AppReport: {
       screen: Report
