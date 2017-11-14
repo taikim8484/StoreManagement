@@ -14,7 +14,7 @@ const TableFood = props => {
   );
 };
 
-class TableDetail extends Component {
+class TableService extends Component {
   state = {};
   getTotal() {
     const { orderDetails } = this.props.order;
@@ -49,4 +49,4 @@ class TableDetail extends Component {
   }
 }
 
-export default TableDetail;
+export default TableService;

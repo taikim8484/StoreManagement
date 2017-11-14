@@ -1,8 +1,15 @@
-import { GET_TABLE_LIST, GETTING_TABLE_LIST } from "../actions/constants";
+import {
+  GETTING_TABLE_LIST,
+  GET_TABLE_LIST,
+  GETTING_PRODUCT,
+  GET_PRODUCT
+} from "../actions/constants";
 
 const initialState = {
   tableList: [],
-  isLoading: false
+  foodList: [],
+  isLoading: false,
+  isLoadingFood: false
 };
 
 export default (state = initialState, actions) => {
@@ -19,6 +26,21 @@ export default (state = initialState, actions) => {
         ...state,
         tableList: actions.payload,
         isLoading: false
+      };
+      break;
+    }
+    case GETTING_PRODUCT: {
+      return {
+        ...state,
+        isLoadingFood: true
+      };
+      break;
+    }
+    case GET_PRODUCT: {
+      return {
+        ...state,
+        foodList: actions.payload,
+        isLoadingFood: false
       };
       break;
     }

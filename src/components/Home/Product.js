@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { ActivityIndicator, Text, View, FlatList } from "react-native";
-import * as actions from "../actions";
+import * as actions from "../../actions";
 import { connect } from "react-redux";
 
 class Product extends Component {
   state = {};
-  //Fetch food data.
   componentDidMount() {
     this.props.getProduct();
   }

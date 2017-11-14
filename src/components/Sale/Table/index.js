@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import { View, Text, Button, FlatList, ActivityIndicator } from "react-native";
+import { View, FlatList, ActivityIndicator } from "react-native";
 
-import { AppHeader } from "../../Header";
+import { AppHeader } from "../../header.js";
 import TableCell from "./TableCell";
-import NewTableDetail from "./NewTableDetail";
+import TableService from "./TableService";
 
 import * as actions from "../../../actions";
 import { connect } from "react-redux";
 import database from "../../../configDatabase/schema";
 import { initDatabase, isDatabaseEmpty } from "../../../configDatabase/service";
 
-export class Table extends Component {
+export class TableHavingCustomer extends Component {
   static navigationOptions = {
     header: null,
     tabBarLabel: "Table"
@@ -20,13 +20,13 @@ export class Table extends Component {
     if (isDatabaseEmpty()) {
       initDatabase();
     } else {
-      this.props.getTableList();
+      this.props.getOrderList();
     }
   }
   render() {
     return (
       <View style={{ flexDirection: "column", flex: 1 }}>
-        <AppHeader title="TABLE" />
+        <AppHeader title="TABLE" navigation={this.props.navigation} />
         <View style={{ backgroundColor: "#EBEBEB", flex: 9 }}>
           {this.props.isLoading ? (
             <ActivityIndicator
@@ -38,7 +38,7 @@ export class Table extends Component {
           ) : (
             <FlatList
               data={this.props.tableList}
-              renderItem={({ item }) => <NewTableDetail order={item} />}
+              renderItem={({ item }) => <TableService order={item} />}
               keyExtractor={item => item.idTable}
             />
           )}
@@ -50,9 +50,9 @@ export class Table extends Component {
 
 const mapStateToProps = state => {
   return {
-    tableList: state.tableListReducer.tableList,
-    isLoading: state.tableListReducer.isLoading
+    tableList: state.orderListReducer.tableList,
+    isLoading: state.orderListReducer.isLoading
   };
 };
 
-export default connect(mapStateToProps, actions)(Table);
+export default connect(mapStateToProps, actions)(TableHavingCustomer);

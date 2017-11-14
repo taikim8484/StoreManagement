@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  View,
-  Button,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Image
-} from "react-native";
+import {} from "react-native";
 import {
   DrawerNavigator,
   TabNavigator,
@@ -16,41 +9,21 @@ import {
 //Drawer
 import Drawer from "./components/Drawer";
 //Components
-import Home from "./components/Home";
-import Sale from "./components/Sale/Sale";
+import TableList from "./components/Home/";
 import Report from "./components/Report";
 import Setting from "./components/Setting";
 //-------------import for Tab Sale---------------
-import Table from "./components/Sale/Table/TableList";
+import TableHavingCustomer from "./components/Sale/Table";
 import Order from "./components/Sale/Order/Order";
 import Calculator from "./components/Sale/Calculator";
 //-----------------------------------------------
-//-------------import for Stack Table---------------
-import ConfirmOrder from "./components/Sale/Order/ConfirmOrder";
-import Product from "./components/Product";
-//import Checkout from "./components/Sale/Table/Checkout";
-
-const StackTable = StackNavigator(
-  {
-    StackTableList: {
-      screen: Table
-    },
-    // StackCheckout: {
-    //   screen: Checkout
-    // },
-    StackConfirmOrder: {
-      screen: ConfirmOrder
-    }
-  },
-  {
-    headerMode: "screen"
-  }
-);
+//-------------import for Stack Home---------------
+import ProductList from "./components/Home/Product";
 
 const SaleTab = TabNavigator(
   {
     TabTable: {
-      screen: StackTable
+      screen: TableHavingCustomer
     },
     TabCalculator: {
       screen: Calculator
@@ -69,13 +42,13 @@ const SaleTab = TabNavigator(
     }
   }
 );
-const StackHome = StackNavigator(
+const TableStack = StackNavigator(
   {
-    StackTableHome: {
-      screen: Home
+    StackTableList: {
+      screen: TableList
     },
-    StackProduct: {
-      screen: Product
+    StackProductList: {
+      screen: ProductList
     }
   },
   {
@@ -85,7 +58,7 @@ const StackHome = StackNavigator(
 export default (AppDrawer = DrawerNavigator(
   {
     AppHome: {
-      screen: StackHome
+      screen: TableStack
     },
     AppReport: {
       screen: Report

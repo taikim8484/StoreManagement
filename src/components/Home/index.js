@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import { View, Text, Button, FlatList, ActivityIndicator } from "react-native";
 
-import { AppHeader } from "./Header";
+import { AppHeader } from "../header.js";
 import Details from "./Details";
 import { connect } from "react-redux";
-import * as actions from "../actions";
+import * as actions from "../../actions";
+
 export class Home extends Component {
   static navigationOptions = {
     header: null,
     drawerLabel: "Home"
   };
   componentDidMount() {
-    this.props.getHome();
+    this.props.getTableList();
   }
   render() {
     const { tableList } = this.props;
@@ -45,8 +46,8 @@ export class Home extends Component {
 }
 const mapStateToProps = state => {
   return {
-    tableList: state.homeReducer.tableList,
-    isLoading: state.homeReducer.isLoading
+    tableList: state.tableListReducer.tableList,
+    isLoading: state.tableListReducer.isLoading
   };
 };
 export default connect(mapStateToProps, actions)(Home);

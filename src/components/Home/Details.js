@@ -1,16 +1,13 @@
 import React, { Component } from "react";
-import { View, Text, Image, TouchableOpacity, Dimensions } from "react-native";
+import { View, Text, TouchableOpacity, Dimensions } from "react-native";
 
 var { height, width } = Dimensions.get("window");
 
 export class Details extends Component {
   render() {
-    console.log("------------------------------------");
-    console.log("Props: ", this.props);
-    console.log("------------------------------------");
     return (
       <TouchableOpacity
-        onPress={() => this.props.navigation.navigate("StackProduct")}
+        onPress={() => this.props.navigation.navigate("StackProductList")}
       >
         <View
           style={{

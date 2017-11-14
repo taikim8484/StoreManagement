@@ -1,30 +1,5 @@
-import { GET_TABLE_LIST } from "./constants";
+import { GET_ORDER_LIST } from "./constants";
 import database from "../configDatabase/schema";
-// const info = [
-//   {
-//     idTable: 1,
-//     foods: [
-//       { name: "Cafe sữa", amount: 1 },
-//       { name: "Sting", amount: 1 },
-//       { name: "Redbull", amount: 2 }
-//     ],
-//     money: 75000
-//   },
-//   {
-//     idTable: 2,
-//     foods: [
-//       { name: "Cam vat", amount: 4 },
-//       { name: "Meo den", amount: 1 },
-//       { name: "Cafe den", amount: 2 }
-//     ],
-//     money: 425000
-//   },
-//   {
-//     idTable: 3,
-//     foods: [{ name: "Tra sữa", amount: 90 }, { name: "Khan lanh", amount: 1 }],
-//     money: 89000
-//   }
-// ];
 
 const isDecreasable = amount => {
   return amount === 0 ? false : true;
@@ -49,11 +24,11 @@ function changeFoodAmount(isIncrease, idTable, idOrderDetail) {
 export const increaseFood = (idTable, idOrderDetail) => async dispatch => {
   changeFoodAmount(true, idTable, idOrderDetail);
   let payload = await database.objects("Order");
-  dispatch({ type: GET_TABLE_LIST, payload });
+  dispatch({ type: GET_ORDER_LIST, payload });
 };
 
 export const decreaseFood = (idTable, idOrderDetail) => async dispatch => {
   changeFoodAmount(false, idTable, idOrderDetail);
   let payload = await database.objects("Order");
-  dispatch({ type: GET_TABLE_LIST, payload });
+  dispatch({ type: GET_ORDER_LIST, payload });
 };
