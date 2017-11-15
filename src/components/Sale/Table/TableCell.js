@@ -58,9 +58,6 @@ export class TableDetail extends Component {
             marginLeft: 50
           }}
         >
-          {/* <Text>{this.props.mon1}</Text>
-          <Text>{this.props.mon2}</Text>
-          <Text>{this.props.mon3}</Text> */}
           {this.renderFoodDetail()}
         </View>
         <View

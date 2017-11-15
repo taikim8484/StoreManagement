@@ -48,7 +48,10 @@ const TableStack = StackNavigator(
       screen: TableList
     },
     StackProductList: {
-      screen: ProductList
+      screen: ProductList,
+      navigationOptions: ({ navigation }) => ({
+        idTable: `${navigation.state.params.idTable}'s StackProductList'`
+      })
     }
   },
   {

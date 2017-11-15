@@ -7,7 +7,10 @@ export class Details extends Component {
   render() {
     return (
       <TouchableOpacity
-        onPress={() => this.props.navigation.navigate("StackProductList")}
+        onPress={() =>
+          this.props.navigation.navigate("StackProductList", {
+            idTable: this.props.table.id
+          })}
       >
         <View
           style={{

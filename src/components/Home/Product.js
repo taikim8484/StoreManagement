@@ -1,37 +1,54 @@
 import React, { Component } from "react";
-import { ActivityIndicator, Text, View, FlatList } from "react-native";
+import {
+  ActivityIndicator,
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity
+} from "react-native";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
 
 class Product extends Component {
   state = {};
   componentDidMount() {
-    this.props.getProduct();
+    this.props.getProduct(this.props.navigation.state.params.idTable);
   }
   render() {
-    const { foodList } = this.props;
+    const { foodList, navigation } = this.props;
     return (
-      <View>
-        {this.props.isLoadingFood ? (
-          <ActivityIndicator
-            animating
-            color={"green"}
-            size={"small"}
-            style={{ justifyContent: "center" }}
-          />
-        ) : (
-          <FlatList
-            data={foodList}
-            renderItem={({ item }) => (
-              <View>
-                <Text>
-                  Name: {item.name} Price: {item.price}
-                </Text>
-              </View>
-            )}
-            keyExtractor={item => item.id}
-          />
-        )}
+      <View style={{ flexDirection: "column", flex: 1 }}>
+        <View style={{ flexDirection: "row", flex: 1 }}>
+          {this.props.isLoading ? (
+            <ActivityIndicator
+              animating
+              color={"green"}
+              size={"small"}
+              style={{ justifyContent: "center" }}
+            />
+          ) : (
+            <FlatList
+              data={foodList}
+              renderItem={({ item }) => (
+                <View style={{ flexDirection: "row" }}>
+                  <Text style={{ color: "red" }}>
+                    Name: {item.name} Price: {item.price}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.props.addFood(navigation.state.params.idTable, item)}
+                  >
+                    <Text>Add</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+              keyExtractor={item => item.id}
+            />
+          )}
+        </View>
+        <TouchableOpacity style={{ flexDirection: "column", flex: 1 }}>
+          <Text>Confirm Order</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -39,8 +56,9 @@ class Product extends Component {
 
 const mapStateToProps = state => {
   return {
-    foodList: state.homeReducer.foodList,
-    isLoadingFood: state.homeReducer.isLoadingFood
+    foodList: state.productReducer.foodList,
+    order: state.confirmOrderReducer.order,
+    isLoading: state.productReducer.isLoading
   };
 };
 

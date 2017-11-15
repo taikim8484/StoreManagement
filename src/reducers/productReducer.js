@@ -1,30 +1,28 @@
 import {
-  GETTING_TABLE_LIST,
-  GET_TABLE_LIST,
   GETTING_PRODUCT,
-  GET_PRODUCT
+  GET_PRODUCT,
+  REFRESH_ORDER
 } from "../actions/constants";
-
+import database from "../configDatabase/schema";
 const initialState = {
-  tableList: [],
   foodList: [],
-  isLoading: false,
-  isLoadingFood: false
+  order: {},
+  isLoading: false
 };
 
 export default (state = initialState, actions) => {
   switch (actions.type) {
-    case GETTING_TABLE_LIST: {
+    case GETTING_PRODUCT: {
       return {
         ...state,
         isLoading: true
       };
       break;
     }
-    case GET_TABLE_LIST: {
+    case GET_PRODUCT: {
       return {
         ...state,
-        tableList: actions.payload,
+        foodList: actions.payload,
         isLoading: false
       };
       break;
