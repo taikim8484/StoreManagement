@@ -7,6 +7,10 @@ export function initDatabase() {
       database.create("Table", { id: 1, name: "101" });
       database.create("Table", { id: 2, name: "102" });
       database.create("Table", { id: 3, name: "103" });
+      database.create("Table", { id: 4, name: "104" });
+      database.create("Table", { id: 5, name: "105" });
+      database.create("Table", { id: 6, name: "106" });
+      database.create("Table", { id: 7, name: "107" });
       //Create Category
       const drink = database.create("Category", {
         id: 1,
@@ -67,8 +71,8 @@ export function initDatabase() {
       });
       //Create Order
       const order1 = database.create("Order", { idTable: 1, orderDetails: [] });
-      const order2 = database.create("Order", { idTable: 2, orderDetails: [] });
-      const order3 = database.create("Order", { idTable: 3, orderDetails: [] });
+      const order2 = database.create("Order", { idTable: 5, orderDetails: [] });
+      const order3 = database.create("Order", { idTable: 7, orderDetails: [] });
       order1.orderDetails.push(orderdetail_1);
       order1.orderDetails.push(orderdetail_2);
       order2.orderDetails.push(orderdetail_3);

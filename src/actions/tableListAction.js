@@ -6,3 +6,6 @@ export const getTableList = () => async dispatch => {
   let payload = await database.objects("Table");
   dispatch({ type: GET_TABLE_LIST, payload });
 };
+// export const isEmpty = idTable => async dispatch => {
+//   return database.objects("Order").filtered(`idTable = ${idTable}`).length == 0;
+// };

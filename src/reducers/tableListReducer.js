@@ -1,15 +1,9 @@
-import {
-  GETTING_TABLE_LIST,
-  GET_TABLE_LIST,
-  GETTING_PRODUCT,
-  GET_PRODUCT
-} from "../actions/constants";
+import { GETTING_TABLE_LIST, GET_TABLE_LIST } from "../actions/constants";
 
 const initialState = {
   tableList: [],
-  foodList: [],
   isLoading: false,
-  isLoadingFood: false
+  isEmpty: false
 };
 
 export default (state = initialState, actions) => {

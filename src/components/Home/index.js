@@ -5,12 +5,17 @@ import { AppHeader } from "../header.js";
 import Details from "./Details";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-
+import database from "../../configDatabase/schema";
 export class Home extends Component {
   static navigationOptions = {
     header: null,
     drawerLabel: "Home"
   };
+  isEmpty(idTable) {
+    return (
+      database.objects("Order").filtered(`idTable = ${idTable}`).length == 0
+    );
+  }
   componentDidMount() {
     this.props.getTableList();
   }
@@ -34,7 +39,11 @@ export class Home extends Component {
             <FlatList
               data={this.props.tableList}
               renderItem={({ item }) => (
-                <Details table={item} navigation={this.props.navigation} />
+                <Details
+                  table={item}
+                  navigation={this.props.navigation}
+                  isEmpty={this.isEmpty(item.id)}
+                />
               )}
               keyExtractor={item => item.id}
             />

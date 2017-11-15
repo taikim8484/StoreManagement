@@ -11,6 +11,7 @@ export class Details extends Component {
           this.props.navigation.navigate("StackProductList", {
             idTable: this.props.table.id
           })}
+        disabled={!this.props.isEmpty}
       >
         <View
           style={{

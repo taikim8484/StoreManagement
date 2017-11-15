@@ -5,6 +5,7 @@ const isExcistFood = (order, food) => {
   return order[0].orderDetails.filtered(`food.id = ${food.id}`).length != 0;
 };
 export const addFood = (idTable, food) => async dispatch => {
+  //Querry Order With Id Table
   let order = database.objects("Order").filtered(`idTable = ${idTable}`);
   try {
     database.write(() => {
