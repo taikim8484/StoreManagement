@@ -19,7 +19,7 @@ export class Details extends Component {
             borderBottomWidth: 0.5,
             width: width,
             height: height / 20,
-            backgroundColor: "#FAFAFB",
+            backgroundColor: !this.props.isEmpty ? "black" : "red",
             justifyContent: "center"
           }}
         >
@@ -31,7 +31,7 @@ export class Details extends Component {
           style={{
             height: height / 12,
             width: width,
-            backgroundColor: "#FAFAFB",
+            backgroundColor: !this.props.isEmpty ? "black" : "red",
             borderBottomColor: "#CECFCA",
             borderBottomWidth: 0.3,
             justifyContent: "center"

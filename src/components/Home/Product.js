@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 
 class Product extends Component {
   state = {};
+  static navigationOptions = {};
   componentDidMount() {
     this.props.getProduct(this.props.navigation.state.params.idTable);
   }
@@ -46,8 +47,23 @@ class Product extends Component {
             />
           )}
         </View>
-        <TouchableOpacity style={{ flexDirection: "column", flex: 1 }}>
+        <TouchableOpacity
+          style={{ flexDirection: "column", flex: 1 }}
+          onPress={() => {
+            navigation.goBack();
+            this.props.getTableList();
+          }}
+        >
           <Text>Confirm Order</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{ flexDirection: "column", flex: 1 }}
+          onPress={() => {
+            this.props.cancelOrder(navigation.state.params.idTable);
+            navigation.goBack();
+          }}
+        >
+          <Text>Cancel</Text>
         </TouchableOpacity>
       </View>
     );

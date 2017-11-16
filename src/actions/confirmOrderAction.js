@@ -1,4 +1,4 @@
-import { REFRESH_ORDER } from "./constants";
+import { REFRESH_ORDER, GETTING_TABLE_LIST, GET_TABLE_LIST } from "./constants";
 import database from "../configDatabase/schema";
 
 const isExcistFood = (order, food) => {
@@ -26,4 +26,17 @@ export const addFood = (idTable, food) => async dispatch => {
     console.log(error);
   }
   dispatch({ type: REFRESH_ORDER, payload: order });
+};
+export const cancelOrder = idTable => async dispatch => {
+  let order = await database.objects("Order").filtered(`idTable = ${idTable}`);
+  try {
+    database.write(() => {
+      database.delete(order);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+  dispatch({ type: GETTING_TABLE_LIST });
+  let payload = await database.objects("Table");
+  dispatch({ type: GET_TABLE_LIST, payload });
 };
