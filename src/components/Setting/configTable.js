@@ -3,7 +3,7 @@ import { FlatList, View, Text, Modal } from "react-native";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import { Button } from "native-base";
-import Form from "./form";
+import { TableForm } from "./form";
 class TableSetting extends Component {
   state = {
     modalVisible: false
@@ -26,7 +26,7 @@ class TableSetting extends Component {
             this.setModalVisible(!this.state.modalVisible);
           }}
         >
-          <Form />
+          <TableForm />
         </Modal>
         <FlatList
           data={this.props.tableList}

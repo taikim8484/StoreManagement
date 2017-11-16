@@ -83,16 +83,23 @@ export function isDatabaseEmpty() {
   return database.objects("Table").length === 0 ? true : false;
 }
 
-export function deconsteDatabase() {
+export function deleteDatabase() {
   try {
     database.write(() => {
-      database.deconste(database.objects("Table"));
-      database.deconste(database.objects("Food"));
-      database.deconste(database.objects("Category"));
-      database.deconste(database.objects("Order"));
-      database.deconste(database.objects("OrderDetail"));
+      database.delete(database.objects("Table"));
+      database.delete(database.objects("Food"));
+      database.delete(database.objects("Category"));
+      database.delete(database.objects("Order"));
+      database.delete(database.objects("OrderDetail"));
     });
   } catch (error) {
     console.log(error);
   }
+}
+export function getNewID() {
+  let schema = database.objects("Food");
+  if (schema.length === 0) {
+    return 1;
+  }
+  return schema.max("id") + 1;
 }

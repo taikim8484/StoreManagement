@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
 import { Button } from "native-base";
+import { deleteDatabase } from "../../configDatabase/service";
 export class Setting extends Component {
   static navigationOptions = {
     drawerLabel: "Setting"
@@ -22,12 +23,17 @@ export class Setting extends Component {
         >
           <Text>Table</Text>
         </Button>
-        <Button block style={{ width: 100, height: 100, alignSelf: "center" }}>
+        <Button
+          block
+          style={{ width: 100, height: 100, alignSelf: "center" }}
+          onPress={() => this.props.navigation.navigate("StackFoodSetting")}
+        >
           <Text>Food</Text>
         </Button>
         <Button
           warning
           style={{ width: 100, height: 100, alignSelf: "center" }}
+          onPress={() => deleteDatabase()}
         >
           <Text>Clear All Data</Text>
         </Button>
