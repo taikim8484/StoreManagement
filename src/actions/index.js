@@ -4,3 +4,4 @@ export * from "./checkOutAction";
 export * from "./orderListAction";
 export * from "./productAction";
 export * from "./confirmOrderAction.js";
+export * from "./settingAction.js";

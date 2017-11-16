@@ -19,7 +19,9 @@ import Calculator from "./components/Sale/Calculator";
 //-----------------------------------------------
 //-------------import for Stack Home---------------
 import ProductList from "./components/Home/Product";
-
+//---import for Stack Setting------
+import TableSetting from "./components/Setting/configTable";
+//import FoodSetting from "./components/Setting/configFood";
 const SaleTab = TabNavigator(
   {
     TabTable: {
@@ -58,6 +60,17 @@ const TableStack = StackNavigator(
     headerMode: "screen"
   }
 );
+const SettingStack = StackNavigator({
+  StackSetting: {
+    screen: Setting
+  },
+  StackTableSetting: {
+    screen: TableSetting
+  }
+  // StackFoodSetting: {
+  //   screen: FoodSetting
+  // }
+});
 export default (AppDrawer = DrawerNavigator(
   {
     AppHome: {
@@ -70,7 +83,7 @@ export default (AppDrawer = DrawerNavigator(
       screen: SaleTab
     },
     AppSetting: {
-      screen: Setting
+      screen: SettingStack
     }
   },
   {

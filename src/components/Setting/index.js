@@ -15,12 +15,21 @@ export class Setting extends Component {
           flex: 1
         }}
       >
-        <Button danger style={{ width: 100, height: 100, alignSelf: "center" }}>
+        <Button
+          danger
+          style={{ width: 100, height: 100, alignSelf: "center" }}
+          onPress={() => this.props.navigation.navigate("StackTableSetting")}
+        >
           <Text>Table</Text>
         </Button>
-
         <Button block style={{ width: 100, height: 100, alignSelf: "center" }}>
           <Text>Food</Text>
+        </Button>
+        <Button
+          warning
+          style={{ width: 100, height: 100, alignSelf: "center" }}
+        >
+          <Text>Clear All Data</Text>
         </Button>
       </View>
     );
