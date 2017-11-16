@@ -15,7 +15,7 @@ export default (BillDetail = props => {
           <Text>{item.amount}</Text>
         </View>
       )}
-      keyExtractor={item => item.id}
+      //keyExtractor={Math.random()}
     />
   );
 });

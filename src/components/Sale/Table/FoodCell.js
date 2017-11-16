@@ -6,14 +6,13 @@ import { connect } from "react-redux";
 
 class FoodCell extends Component {
   increaseFood() {
-    this.props.increaseFood(this.props.idTable, this.props.orderDetail.id);
+    this.props.increaseFood(this.props.idTable, this.props.orderDetail.food);
   }
   decreaseFood() {
-    this.props.decreaseFood(this.props.idTable, this.props.orderDetail.id);
+    this.props.decreaseFood(this.props.idTable, this.props.orderDetail.food);
   }
   render() {
     const { orderDetail } = this.props;
-    console.log("AAA", orderDetail.food);
     return (
       <View style={{ flexDirection: "row", height: 30 }}>
         <TouchableOpacity

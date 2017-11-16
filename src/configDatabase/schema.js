@@ -41,7 +41,6 @@ class OrderDetail {}
 OrderDetail.schema = {
   name: "OrderDetail",
   properties: {
-    id: "int",
     food: "Food",
     amount: "int"
   }

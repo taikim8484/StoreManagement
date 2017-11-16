@@ -4,11 +4,11 @@ import database from "../configDatabase/schema";
 const isDecreasable = amount => {
   return amount === 0 ? false : true;
 };
-function changeFoodAmount(isIncrease, idTable, idOrderDetail) {
+function changeFoodAmount(isIncrease, idTable, food) {
   try {
     let order = database.objects("Order").filtered(`idTable = ${idTable}`);
 
-    let orderDetail = order[0].orderDetails.filtered(`id = ${idOrderDetail}`);
+    let orderDetail = order[0].orderDetails.filtered(`food.id = ${food.id}`);
 
     database.write(() => {
       if (isIncrease) {
@@ -21,14 +21,14 @@ function changeFoodAmount(isIncrease, idTable, idOrderDetail) {
     console.log(error);
   }
 }
-export const increaseFood = (idTable, idOrderDetail) => async dispatch => {
-  changeFoodAmount(true, idTable, idOrderDetail);
+export const increaseFood = (idTable, food) => async dispatch => {
+  changeFoodAmount(true, idTable, food);
   let payload = await database.objects("Order");
   dispatch({ type: GET_ORDER_LIST, payload });
 };
 
-export const decreaseFood = (idTable, idOrderDetail) => async dispatch => {
-  changeFoodAmount(false, idTable, idOrderDetail);
+export const decreaseFood = (idTable, food) => async dispatch => {
+  changeFoodAmount(false, idTable, food);
   let payload = await database.objects("Order");
   dispatch({ type: GET_ORDER_LIST, payload });
 };

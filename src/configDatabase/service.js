@@ -50,22 +50,18 @@ export function initDatabase() {
       another.foods.push(another_id4);
       //Create OrderDetail
       const orderdetail_1 = database.create("OrderDetail", {
-        id: 1,
         food: drink_id2,
         amount: 2
       });
       const orderdetail_2 = database.create("OrderDetail", {
-        id: 2,
         food: drink_id1,
         amount: 1
       });
       const orderdetail_3 = database.create("OrderDetail", {
-        id: 3,
         food: drink_id3,
         amount: 4
       });
       const orderdetail_4 = database.create("OrderDetail", {
-        id: 4,
         food: another_id4,
         amount: 5
       });
