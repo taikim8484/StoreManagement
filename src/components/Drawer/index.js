@@ -38,29 +38,9 @@ class Drawer extends Component {
   state = {};
   render() {
     return (
-      <View style={{ flex: 1, flexDirection: "column" }}>
-        <View
-          style={{
-            flex: 3,
-            backgroundColor: "#35B768",
-            elevation: 2,
-            justifyContent: "center",
-            shadowOffset: { width: 0, height: 5 },
-            shadowOpacity: 0.5,
-            shadowColor: "gray",
-            elevation: 30
-          }}
-        >
-          <Text
-            style={{
-              textAlign: "center",
-              fontSize: 15,
-              fontFamily: "Roboto-Light",
-              color: "white"
-            }}
-          >
-            CAFE HIMLAM
-          </Text>
+      <View style={styles.viewDrawer}>
+        <View style={styles.viewTitle}>
+          <Text style={styles.textTitle}>CAFE HIMLAM</Text>
         </View>
         <View
           style={{
@@ -72,9 +52,7 @@ class Drawer extends Component {
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("AppHome")}
           >
-            <View
-              style={{ flexDirection: "row", marginTop: 30, marginLeft: 30 }}
-            >
+            <View style={styles.viewRoute}>
               {homeIcon}
               <Text style={styles.textTouch}>TRANG CHỦ</Text>
             </View>
@@ -82,7 +60,7 @@ class Drawer extends Component {
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("AppSale")}
           >
-            <View style={{ flexDirection: "row", marginLeft: 30 }}>
+            <View style={styles.viewRoute}>
               {saleIcon}
               <Text style={styles.textTouch}>BÁN HÀNG</Text>
             </View>
@@ -90,7 +68,7 @@ class Drawer extends Component {
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("AppReport")}
           >
-            <View style={{ flexDirection: "row", marginLeft: 30 }}>
+            <View style={styles.viewRoute}>
               {reportIcon}
               <Text style={styles.textTouch}>BÁO CÁO</Text>
             </View>
@@ -98,7 +76,7 @@ class Drawer extends Component {
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("AppSetting")}
           >
-            <View style={{ flexDirection: "row", marginLeft: 30 }}>
+            <View style={styles.viewRoute}>
               {settingIcon}
               <Text style={styles.textTouch}>CÀI ĐẶT</Text>
             </View>

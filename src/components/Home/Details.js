@@ -1,44 +1,48 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, Dimensions } from "react-native";
-
+import { View, Text, TouchableOpacity, Dimensions, Image } from "react-native";
 var { height, width } = Dimensions.get("window");
-
+const tableImage = require("../../Media/table.png");
+const emptytableImage = require("../../Media/table-empty.png");
 export class Details extends Component {
   render() {
     return (
       <TouchableOpacity
+        style={{
+          marginTop: 5,
+          marginLeft: 5,
+          borderRadius: 10,
+          borderWidth: 0.5,
+          borderColor: "grey",
+          width: width / 3.2,
+          justifyContent: "center",
+          alignItems: "center"
+        }}
         onPress={() =>
           this.props.navigation.navigate("StackProductList", {
             idTable: this.props.table.id
           })}
         disabled={!this.props.isEmpty}
       >
-        <View
-          style={{
-            borderBottomColor: "#CECFCA",
-            borderBottomWidth: 0.5,
-            width: width,
-            height: height / 20,
-            backgroundColor: !this.props.isEmpty ? "black" : "red",
-            justifyContent: "center"
-          }}
-        >
-          <Text style={{ color: "#68D0FE", marginLeft: 10 }}>
-            Ban: {this.props.table.name}
+        <View>
+          <Text
+            style={{
+              color: "grey",
+              marginLeft: 10,
+              fontSize: 20,
+              fontFamily: "Roboto-Light"
+            }}
+          >
+            {this.props.table.name}
           </Text>
         </View>
-        <View
+        <Image
           style={{
-            height: height / 12,
-            width: width,
-            backgroundColor: !this.props.isEmpty ? "black" : "red",
-            borderBottomColor: "#CECFCA",
-            borderBottomWidth: 0.3,
-            justifyContent: "center"
+            flex: 1,
+            aspectRatio: 1.2,
+            resizeMode: "contain"
           }}
-        >
-          <Text style={{ textAlign: "center" }}>Total: </Text>
-        </View>
+          source={this.props.isEmpty ? emptytableImage : tableImage}
+        />
       </TouchableOpacity>
     );
   }
