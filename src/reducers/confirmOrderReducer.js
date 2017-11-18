@@ -1,6 +1,6 @@
 import { REFRESH_ORDER } from "../actions/constants";
 const initialState = {
-  order: {}
+  order: []
 };
 
 export default (state = initialState, actions) => {
